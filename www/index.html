@@ -5,8 +5,8 @@
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+        <!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">-->
         <link rel="stylesheet" href="css/angular-material.min.css">
         <link rel="stylesheet" type="text/css" href="css/test.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -23,24 +23,24 @@
         <title>Hello Suits</title>
     </head>
     <body ng-controller="BuffetController as buffet" ng-cloak>
-        <md-toolbar>
+        <md-toolbar class="header-toolbar">
             <div class="md-toolbar-tools">
                 <h1>SUITS</h1>
                 <span flex></span>
-                <md-button class="md-fab button-add" aria-label="Add"><span>+</span></md-button>
+                <md-button class="md-fab button-add" aria-label="Add" ng-click="buffet.newLawyer()"><span>+</span></md-button>
             </div>
         </md-toolbar>
 
         <md-content>
             <md-list class="lawyers-list">
                 <md-list-item class="md-3-line" ng-repeat="lawyer in buffet.lawyers" >
-                    <div class="md-list-item-text">
+                    <div class="md-list-item-text">                        
                         <h3>{{lawyer.name}}</h3>
                         <h4>{{lawyer.specialty}}</h4>
                     </div>    
                     <!--<md-button class="md-icon-button" aria-label="Edit" ng-click="buffet.blaBla($event, lawyer)" >-->
                     <md-button class="md-icon-button" aria-label="Edit" ng-click="buffet.showLawyer($event, lawyer)" >
-                        <i class="material-icons" >more vert</i>
+                        <i class="material-icons">more_horiz</i>
                     </md-button>
 
                     <md-divider ng-if="!$last"></md-divider>

@@ -1,0 +1,38 @@
+<md-dialog aria-label="New Lawyer"  ng-cloak >
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>New Lawyer</h2>     
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <md-input-container>
+          <label>Name</label>
+          <input ng-model="lawyer.name">
+        </md-input-container>
+        <md-input-container>
+          <label>Specialty</label>
+          <input ng-model="lawyer.specialty">
+        </md-input-container>
+        <md-input-container>
+          <label>Title</label>
+          <input ng-model="lawyer.title">
+        </md-input-container>
+        <md-input-container>
+          <label>Age</label>
+          <input ng-model="lawyer.age" type="number" >
+        </md-input-container>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row" style="padding-right:15px;">
+      <md-button  class="md-accent md-raised" ng-click="createLawyer()">
+        SAVE
+      </md-button>
+      <md-button  ng-click="hide()">
+        CANCEL
+      </md-button>
+
+    </md-dialog-actions>
+  </form>
+</md-dialog>

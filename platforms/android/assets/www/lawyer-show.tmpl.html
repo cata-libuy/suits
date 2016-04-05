@@ -1,0 +1,43 @@
+<md-dialog aria-label="Show Lawyer"  ng-cloak >
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>{{lawyer.name}}</h2>        
+        <span flex></span>
+        <md-button class="md-icon-button"  ng-click="editorEnabled=!editorEnabled">
+          <i class="material-icons" >edit</i>
+        </md-button>
+        <md-button class="md-icon-button" ng-click="deleteLawyer(lawyer.id)">
+          <i class="material-icons" >delete</i>
+        </md-button>        
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <div ng-hide="editorEnabled">
+        <ul>
+          <li>Specialty: {{lawyer.specialty}}</li>
+          <li>Title: {{lawyer.title}}</li>
+          <li>Age: {{lawyer.age}}</li>
+        </ul>
+        </div>
+        <div ng-show="editorEnabled">          
+            <input ng-model="lawyer.name">
+            <input ng-model="lawyer.specialty">
+            <input ng-model="lawyer.title">
+            <input ng-model="lawyer.age">
+            <button ng-click="updateLawyer()">guardar</button>
+        </div>
+
+      </div>
+    </md-dialog-content>
+    <!--<md-dialog-actions layout="column">
+      <a ng-click="answer('not useful')">
+       <i class="material-icons" ng-click="" >delete</i> Eliminar
+      </a>
+      <md-button ng-click="answer('useful')" style="margin-right:20px;">
+        Cancel
+      </md-button>
+    </md-dialog-actions>-->
+  </form>
+</md-dialog>

@@ -1,8 +1,15 @@
-<md-dialog aria-label="Mango (Fruit)"  ng-cloak >
+<md-dialog aria-label="Show Lawyer"  ng-cloak >
   <form>
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2>{{lawyer.name}}</h2>        
+        <div ng-hide="editorEnabled">
+          <h2>{{lawyer.name}}</h2>
+        </div>
+        <div ng-show="editorEnabled">
+          <md-input-container style="padding-top:20px;">            
+            <input ng-model="lawyer.name">
+          </md-input-container>
+        </div>
         <span flex></span>
         <md-button class="md-icon-button"  ng-click="editorEnabled=!editorEnabled">
           <i class="material-icons" >edit</i>
@@ -14,19 +21,27 @@
     </md-toolbar>
     <md-dialog-content>
       <div class="md-dialog-content">
-        <div ng-hide="editorEnabled">
+        <div ng-hide="editorEnabled" class="text">
         <ul>
-          <li>Specialty: {{lawyer.specialty}}</li>
-          <li>Title: {{lawyer.title}}</li>
-          <li>Age: {{lawyer.age}}</li>
+          <li><span>Specialty</span> <br> {{lawyer.specialty || 'not set'}}</li>
+          <li><span>Title</span> <br>  {{lawyer.title}}</li>
+          <li><span>Age</span> <br>  {{lawyer.age}}</li>
         </ul>
         </div>
-        <div ng-show="editorEnabled">          
-            <input ng-model="lawyer.name">
-            <input ng-model="lawyer.specialty">
-            <input ng-model="lawyer.title">
-            <input ng-model="lawyer.age">
-            <button ng-click="updateLawyer()">guardar</button>
+        <div ng-show="editorEnabled">
+        <md-input-container>
+          <label>Specialty</label>
+          <input ng-model="lawyer.specialty">
+        </md-input-container>
+        <md-input-container>
+          <label>Title</label>
+          <input ng-model="lawyer.title">
+        </md-input-container>
+        <md-input-container>
+          <label>Age</label>
+          <input ng-model="lawyer.age" type="number" >
+        </md-input-container>
+            <md-button class="md-accent md-raised" ng-click="updateLawyer()">UPDATE</md-button>
         </div>
 
       </div>
