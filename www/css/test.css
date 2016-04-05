@@ -2,3 +2,42 @@
 	color:red;
 	font-size: 200%;
 }
+
+.md-fab.button-add {
+	position:fixed;
+	bottom:25px;
+	right:25px;
+}
+
+.md-fab.button-add span {
+	font-size: 36px;
+	text-align: center;
+}
+
+md-list.lawyers-list {
+	padding-top: 10px;
+}
+.md-list-item-text {
+	padding-left: 5px;
+}
+
+.lawyers-list .md-icon-button {
+	margin-top: 15px;
+}
+
+/*Ang material - Dialog*/
+
+
+.dialogdemoBasicUsage #popupContainer {
+  position: relative; }
+.dialogdemoBasicUsage .footer {
+  width: 100%;
+  text-align: center;
+  margin-left: 20px; }
+.dialogdemoBasicUsage .footer, .dialogdemoBasicUsage .footer > code {
+  font-size: 0.8em;
+  margin-top: 50px; }
+.dialogdemoBasicUsage button {
+  width: 200px; }
+.dialogdemoBasicUsage div#status {
+  color: #c60008; }

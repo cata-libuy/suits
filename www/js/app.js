@@ -1,6 +1,9 @@
-var app = angular.module('suitsApp', []);
+var app = angular.module('suitsApp', ['ngMaterial']);
 
-app.controller("BuffetController", ['$http', function($http) {
+
+
+
+app.controller("BuffetController", ['$http','$scope', '$mdDialog', '$mdMedia', function($http, $scope, $mdDialog, $mdMedia) {
 	var buffet = this;
 	var url = 'http://dev.nursoft.cl:3000/api/v1/lawyers/'
 	buffet.lawyerData = {};
@@ -39,24 +42,69 @@ app.controller("BuffetController", ['$http', function($http) {
 
 	}
 
-	//Actualizar abogado
 
-	buffet.updateLawyer = function () {
-		$http.put(url, buffet.lawyerData).then(
+	buffet.showLawyer = function(ev, someLawyer) {
+		$scope.lawyer = someLawyer;
+		console.log('showLawer '+$scope.lawyer.name);
+	    var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+	    $mdDialog.show({
+	      controller: DialogController,
+	      templateUrl: 'lawyer-show.tmpl.html',
+	      parent: angular.element(document.body),
+	      locals: {lawyer: $scope.lawyer },
+	      targetEvent: ev,
+	      clickOutsideToClose:true,
+	      //fullscreen: useFullScreen
+	    })
+	    .then(function(answer) {
+	      $scope.status = 'You said the information was "' + answer + '".';
+	    }, function() {
+	      $scope.status = 'You cancelled the dialog.';
+	    });
+	    $scope.$watch(function() {
+	      return $mdMedia('xs') || $mdMedia('sm');
+	    }, function(wantsFullScreen) {
+	      $scope.customFullscreen = (wantsFullScreen === true);
+	    });
+
+	}
+
+
+	this.blaBla = function(ev, theLawyer) {
+		$scope.showLawyer(ev, theLawyer);
+	};
+
+}]);
+
+function DialogController($scope, $mdDialog, $http, lawyer) {
+	var url = 'http://dev.nursoft.cl:3000/api/v1/lawyers/';
+	$scope.lawyer = lawyer;
+  $scope.hide = function() {
+    $mdDialog.hide();
+  };
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
+  $scope.answer = function(answer) {
+    $mdDialog.hide(answer);
+  };
+  $scope.updateLawyer = function () {
+  		console.log('update '+lawyer.name);
+  		
+		$http.put(url+lawyer.id, lawyer).then(
 			function (response) {
 				alert('Abogado actualizado', response.data);
+				$mdDialog.hide();
 			},
 			function (error) {
 				alert('Ooops, no pudimos actualizar abogado '+error.data);
 				console.log(error.data);
 			}
 			);
-	}
+		};
 
-	//Eliminar Abogado
-	buffet.deleteLawyer = function(lawyerId) {
-		urlDelete = url+'delete?id='+lawyerId;
-		$http.delete(urlDelete).then(
+	$scope.deleteLawyer = function(lawyerId) {
+		$http.delete(url+lawyerId).then(
 			function (response) {
 				alert('Abogado eliminado!');
 			},
@@ -65,10 +113,47 @@ app.controller("BuffetController", ['$http', function($http) {
 				console.log(error.data);
 			}
 		);
-
+		
 
 	};
 
 
+}
 
-}]);
+
+
+
+
+/*Angular material - Dialog*/
+
+/*app.controller('AppCtrl', function($scope, $mdDialog, $mdMedia) {
+  $scope.status = '  ';
+  $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+
+  
+
+  $scope.showAdvanced = function(ev) {
+    var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+    $mdDialog.show({
+      controller: DialogController,
+      templateUrl: 'dialog1.tmpl.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true,
+      //fullscreen: useFullScreen
+    })
+    .then(function(answer) {
+      $scope.status = 'You said the information was "' + answer + '".';
+    }, function() {
+      $scope.status = 'You cancelled the dialog.';
+    });
+    $scope.$watch(function() {
+      return $mdMedia('xs') || $mdMedia('sm');
+    }, function(wantsFullScreen) {
+      $scope.customFullscreen = (wantsFullScreen === true);
+    });
+  };
+
+});
+*/
+
