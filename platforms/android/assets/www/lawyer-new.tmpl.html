@@ -26,13 +26,12 @@
       </div>
     </md-dialog-content>
     <md-dialog-actions layout="row" style="padding-right:15px;">
-      <md-button  class="md-accent md-raised" ng-click="createLawyer()">
+      <md-button class="md-accent md-raised" ng-click="createLawyer()"  ng-dblclick="return false" ng-disabled="flag">
         SAVE
       </md-button>
       <md-button  ng-click="hide()">
         CANCEL
       </md-button>
-
     </md-dialog-actions>
   </form>
 </md-dialog>

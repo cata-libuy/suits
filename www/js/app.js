@@ -1,21 +1,12 @@
 var app = angular.module('suitsApp', ['ngMaterial']).config(function($mdThemingProvider) {
-  				$mdThemingProvider.theme('default').primaryPalette('blue-grey').accentPalette('red').dark();
+  				$mdThemingProvider.theme('default').primaryPalette('red').accentPalette('blue-grey').dark();
   			});
-
-
-
 
 app.controller("BuffetController", ['$http','$scope', '$rootScope', '$mdDialog', '$mdMedia', 
 	function($http, $scope, $rootScope, $mdDialog, $mdMedia) {
 	var buffet = this;
 	$rootScope.url = 'http://dev.nursoft.cl:3000/api/v1/lawyers/';
 	buffet.lawyerData = {};
-	$rootScope.rootTest = 'hola root';
-
-	//Try service
-	/*this.tryApi = function () {
-		ConnectToApi.sayHello();
-	};*/
 
 	//Lista de abogados
 	$rootScope.lawyers = [];
@@ -52,23 +43,6 @@ app.controller("BuffetController", ['$http','$scope', '$rootScope', '$mdDialog',
 
 		);
 	
-
-	/*//Crear Abogado	
-	buffet.newLawyer = function() {
-		$http.post(url, buffet.lawyerData).then(
-			//Success
-			function (data) {
-				alert('Nuevo abogado creado, staus ' + data);
-			},
-
-			//Error
-			function (response) {
-				alert('Ooops, no pudimos crear abogado');
-			}
-		);
-
-	}*/
-
 
 	buffet.showLawyer = function(ev, someLawyer) {
 		$scope.lawyer = someLawyer;
@@ -149,7 +123,6 @@ function NewLawyerController($scope, $rootScope, $mdDialog, $http) {
 				$rootScope.refreshLawyers();
 				$scope.flag = true;
 				$mdDialog.hide();
-
 			},
 
 			//Error
@@ -191,7 +164,8 @@ function ShowLawyerController($scope, $rootScope, $mdDialog, $http, lawyer) {
 		};
 
 	$scope.deleteLawyer = function(lawyerId) {
-		$http.delete(url+lawyerId).then(
+		if (confirm('Seguro borrar?')) {
+			$http.delete(url+lawyerId).then(
 			function (response) {
 				$rootScope.refreshLawyers();
 				$mdDialog.hide();
@@ -202,6 +176,9 @@ function ShowLawyerController($scope, $rootScope, $mdDialog, $http, lawyer) {
 				console.log(error.data);
 			}
 		);
+
+		}
+
 		
 
 	};

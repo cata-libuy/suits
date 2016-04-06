@@ -15,7 +15,7 @@
         <script   src="https://code.jquery.com/jquery-1.12.2.min.js"   integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk="   crossorigin="anonymous"></script>
         <script type="text/javascript" src="js/lib/angular.min.js"></script>
         <script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
-        <!--<script type="text/javascript" src="js/lib/npm.js"></script>-->
+        <script type="text/javascript" src="js/lib/npm.js"></script>
         <script type="text/javascript" src="js/lib/angular-resource.min.js"></script>       
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
@@ -54,6 +54,7 @@
 
     
         <p>{{ buffet.lawyers.length }}</p>
+        <md-button class="md-raised">Try api</md-button>
         <ul ng-repeat="lawyer in buffet.lawyers">
             <li>Id: {{lawyer.id}}, {{lawyer.name}}, Speciality {{lawyer.specialty}}, Title {{lawyer.title}}, Age {{lawyer.age}} <br/> <a href ng-click="buffet.deleteLawyer(lawyer.id)">Eliminar</a> </li>
         </ul>

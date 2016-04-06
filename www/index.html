@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html ng-app="suitsApp">
     <head>
-        <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
+        <meta charset="UTF-8">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">-->
         <link rel="stylesheet" href="css/angular-material.min.css">
-        <link rel="stylesheet" type="text/css" href="css/test.css">
+        <link rel="stylesheet" type="text/css" href="css/suits.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
         <title>Hello Suits</title>
@@ -31,7 +29,6 @@
                         <h3>{{lawyer.name}}</h3>
                         <h4>{{lawyer.specialty}}</h4>
                     </div>    
-                    <!--<md-button class="md-icon-button" aria-label="Edit" ng-click="buffet.blaBla($event, lawyer)" >-->
                     <md-button class="md-icon-button" aria-label="Edit" ng-click="buffet.showLawyer($event, lawyer)" >
                         <i class="material-icons">more_horiz</i>
                     </md-button>
@@ -40,18 +37,13 @@
                 </md-list-item>
             </md-list>
         </md-content>      
-
-
- 
-
     </body>
     <script type="text/javascript" src="js/lib/angular.min.js"></script>
-        <script type="text/javascript" src="js/lib/angular-resource.min.js"></script>       
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript" src="js/app.js"></script>
-        <script type="text/javascript" src="js/service.js"></script>
-
+    <script type="text/javascript" src="js/lib/angular-resource.min.js"></script>       
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/service.js"></script>
     <!--Angular Material-->
     <script src="js/lib/angular-aria.min.js"></script>
     <script src="js/lib/angular-animate.min.js"></script>

@@ -29,30 +29,21 @@
         </ul>
         </div>
         <div ng-show="editorEnabled">
-        <md-input-container>
-          <label>Specialty</label>
-          <input ng-model="lawyer.specialty">
-        </md-input-container>
-        <md-input-container>
-          <label>Title</label>
-          <input ng-model="lawyer.title">
-        </md-input-container>
-        <md-input-container>
-          <label>Age</label>
-          <input ng-model="lawyer.age" type="number" >
-        </md-input-container>
-            <md-button class="md-accent md-raised" ng-click="updateLawyer()">UPDATE</md-button>
+          <md-input-container>
+            <label>Specialty</label>
+            <input ng-model="lawyer.specialty">
+          </md-input-container>
+          <md-input-container>
+            <label>Title</label>
+            <input ng-model="lawyer.title">
+          </md-input-container>
+          <md-input-container>
+            <label>Age</label>
+            <input ng-model="lawyer.age" type="number" >
+          </md-input-container>
+              <md-button class="md-accent md-raised" ng-click="updateLawyer()">UPDATE</md-button>
         </div>
-
       </div>
     </md-dialog-content>
-    <!--<md-dialog-actions layout="column">
-      <a ng-click="answer('not useful')">
-       <i class="material-icons" ng-click="" >delete</i> Eliminar
-      </a>
-      <md-button ng-click="answer('useful')" style="margin-right:20px;">
-        Cancel
-      </md-button>
-    </md-dialog-actions>-->
   </form>
 </md-dialog>

@@ -1,0 +1,86 @@
+body {
+	background-color: rgb(66,66,66);
+}
+
+/*Toolbar*/
+
+md-toolbar.header-toolbar {  
+  position: fixed;
+  top: 0;
+  left:0;
+}
+
+/*Add button*/
+.md-fab.button-add {
+	position:fixed;
+	top:25px;
+	right:25px;
+}
+
+/*Lista de abogados*/
+
+/*.md-fab.button-add span {
+	font-size: 36px;
+	text-align: center;
+}*/
+
+md-list.lawyers-list {
+	margin-top:50px;
+	padding-top: 10px;
+}
+
+.md-list-item-text {
+	padding: 0 15px;
+}
+
+.lawyers-list .md-icon-button {
+	margin-top: 15px;
+}
+
+/*Angular material - Dialog*/
+
+.dialogdemoBasicUsage #popupContainer {
+  position: relative; }
+.dialogdemoBasicUsage .footer {
+  width: 100%;
+  text-align: center;
+  margin-left: 20px; }
+.dialogdemoBasicUsage .footer, .dialogdemoBasicUsage .footer > code {
+  font-size: 0.8em;
+  margin-top: 50px; }
+.dialogdemoBasicUsage button {
+  width: 200px; }
+.dialogdemoBasicUsage div#status {
+  color: #c60008; }
+
+ md-dialog-content {
+  	/*background-color: #fff;*/
+  }
+
+  md-input-container {
+  	margin:0;
+  }
+
+  md-input-container label {
+  	color: rgba(255,255,255,0.5);
+  	font-size: 97%;
+  }
+
+  .md-dialog-content ul {
+  	list-style-type: none;
+  	color:#fff;
+  	margin: -10px 0 0 0;
+  	padding:0;
+  }
+
+  .md-dialog-content li {
+  	padding:2px;
+  	padding-bottom:5px;
+  }
+
+  .md-dialog-content .text li>span {
+  	font-size: 75%;
+  	color: rgba(255,255,255,0.6);
+  	text-shadow: 1px 1px 0px rgba(0,0,0,0.4), -1px -1px 0px rgba(0,0,0,0.4);
+  }
+
