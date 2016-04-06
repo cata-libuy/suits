@@ -1,4 +1,6 @@
-var app = angular.module('suitsApp', ['ngMaterial']);
+var app = angular.module('suitsApp', ['ngMaterial']).config(function($mdThemingProvider) {
+  				$mdThemingProvider.theme('default').primaryPalette('blue-grey').accentPalette('red').dark();
+  			});
 
 
 
@@ -116,14 +118,13 @@ function NewLawyerController($scope, $mdDialog, $http) {
 			//Success
 			
 			function (data) {
-				alert('Nuevo abogado creado, staus ' + data);
+				//alert('Nuevo abogado creado, staus ' + data);
 				$mdDialog.hide();
 			},
 
 			//Error
 			function (response) {
 				alert('Ooops, no pudimos crear abogado');
-				$mdDialog.hide();
 			}
 		);
   };
@@ -147,11 +148,11 @@ function ShowLawyerController($scope, $mdDialog, $http, lawyer) {
   		
 		$http.put(url+lawyer.id, lawyer).then(
 			function (response) {
-				alert('Abogado actualizado', response.data);
+				//alert('Abogado actualizado', response.data);
 				$mdDialog.hide();
 			},
 			function (error) {
-				alert('Ooops, no pudimos actualizar abogado '+error.data);
+				alert('Ooops, no pudimos actualizar abogado');
 				console.log(error.data);
 			}
 			);
@@ -160,7 +161,7 @@ function ShowLawyerController($scope, $mdDialog, $http, lawyer) {
 	$scope.deleteLawyer = function(lawyerId) {
 		$http.delete(url+lawyerId).then(
 			function (response) {
-				alert('Abogado eliminado!');
+				//alert('Abogado eliminado!');
 			},
 			function (error) {
 				alert('No hemos podido eliminar al abogado');

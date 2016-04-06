@@ -5,19 +5,44 @@ var app = angular.module('suitsApp', ['ngMaterial']).config(function($mdThemingP
 
 
 
-app.controller("BuffetController", ['$http','$scope', '$mdDialog', '$mdMedia', function($http, $scope, $mdDialog, $mdMedia) {
+app.controller("BuffetController", ['$http','$scope', '$rootScope', '$mdDialog', '$mdMedia', 
+	function($http, $scope, $rootScope, $mdDialog, $mdMedia) {
 	var buffet = this;
-	var url = 'http://dev.nursoft.cl:3000/api/v1/lawyers/'
+	$rootScope.url = 'http://dev.nursoft.cl:3000/api/v1/lawyers/';
 	buffet.lawyerData = {};
+	$rootScope.rootTest = 'hola root';
+
+	//Try service
+	/*this.tryApi = function () {
+		ConnectToApi.sayHello();
+	};*/
 
 	//Lista de abogados
-	buffet.lawyers = [];
+	$rootScope.lawyers = [];
 	
-	$http.get(url)
+	$rootScope.refreshLawyers = function() {
+		$http.get($rootScope.url)
 		.then(		
 			function (response) {
 			//Exito
-			buffet.lawyers = response.data.lawyers;
+			$rootScope.lawyers = response.data.lawyers;
+			buffet.lawyers = $rootScope.lawyers;
+			}, 
+			
+			function (data) {
+			//Error
+			alert('No hemos podido conectar con los abogados.');
+			}
+
+		);
+	}; 
+
+	$http.get($rootScope.url)
+		.then(		
+			function (response) {
+			//Exito
+			$rootScope.lawyers = response.data.lawyers;
+			buffet.lawyers = $rootScope.lawyers;
 			}, 
 			
 			function (data) {
@@ -100,26 +125,31 @@ app.controller("BuffetController", ['$http','$scope', '$mdDialog', '$mdMedia', f
 
 }]);
 
-function NewLawyerController($scope, $mdDialog, $http) {
-	var url = 'http://dev.nursoft.cl:3000/api/v1/lawyers/';
+function NewLawyerController($scope, $rootScope, $mdDialog, $http) {
+	var url = $rootScope.url;
 	$scope.lawyer = {};
+	$scope.flag = false;
+
+
 	$scope.hide = function() {
     $mdDialog.hide();
   };
   $scope.cancel = function() {
     $mdDialog.cancel();
   };
-  $scope.answer = function(answer) {
-    $mdDialog.hide(answer);
-  };
+ 	
   $scope.createLawyer = function() {
+  		$scope.flag = true;
   		console.log($scope.lawyer);
 		$http.post(url, $scope.lawyer).then(
 			//Success
 			
 			function (data) {
 				//alert('Nuevo abogado creado, staus ' + data);
+				$rootScope.refreshLawyers();
+				$scope.flag = true;
 				$mdDialog.hide();
+
 			},
 
 			//Error
@@ -131,9 +161,10 @@ function NewLawyerController($scope, $mdDialog, $http) {
 
 };
 
-function ShowLawyerController($scope, $mdDialog, $http, lawyer) {
-	var url = 'http://dev.nursoft.cl:3000/api/v1/lawyers/';
+function ShowLawyerController($scope, $rootScope, $mdDialog, $http, lawyer) {
+	var url = $rootScope.url;
 	$scope.lawyer = lawyer;
+	$scope.test = $rootScope.rootTest;
   $scope.hide = function() {
     $mdDialog.hide();
   };
@@ -145,6 +176,7 @@ function ShowLawyerController($scope, $mdDialog, $http, lawyer) {
   };
   $scope.updateLawyer = function () {
   		console.log('update '+lawyer.name);
+  		console.log($scope.test);
   		
 		$http.put(url+lawyer.id, lawyer).then(
 			function (response) {
@@ -161,6 +193,8 @@ function ShowLawyerController($scope, $mdDialog, $http, lawyer) {
 	$scope.deleteLawyer = function(lawyerId) {
 		$http.delete(url+lawyerId).then(
 			function (response) {
+				$rootScope.refreshLawyers();
+				$mdDialog.hide();
 				//alert('Abogado eliminado!');
 			},
 			function (error) {

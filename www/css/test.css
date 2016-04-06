@@ -4,10 +4,10 @@ body {
 
 /*Toolbar*/
 
-md-toolbar.header-toolbar {
-position: fixed;
-top:0;
-left:0;
+md-toolbar.header-toolbar {  
+  position: fixed;
+  top: 0;
+  left:0;
 }
 
 /*Add button*/
@@ -19,17 +19,18 @@ left:0;
 
 /*Lista de abogados*/
 
-.md-fab.button-add span {
+/*.md-fab.button-add span {
 	font-size: 36px;
 	text-align: center;
-}
+}*/
 
 md-list.lawyers-list {
-	margin-top:45px;
+	margin-top:50px;
 	padding-top: 10px;
 }
+
 .md-list-item-text {
-	padding-left: 15px;
+	padding: 0 15px;
 }
 
 .lawyers-list .md-icon-button {
